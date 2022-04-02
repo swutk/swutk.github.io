@@ -15,9 +15,15 @@
         <p class="p" style="font-size: 56px; margin: 0px 0px; font-weight: 200;">Стандартизатор числовых наборов</p>
         <button class="p" onclick="begin()" style="border: none; border-radius: 8px; padding: 14px 24px; background-color: #f6d6da;
         color: #cd2638; font-weight: 600; font-size: 16px;
-        position:  relative; top: 48px">
+        position:  relative; top: 48px;  margin: 0px 4px;">
             Очистить
         </button>
+        <input type="text" id="znpz" style="border: none; border-radius: 8px; padding: 14px 14px; background-color: #f6d6da;
+        color: #cd2638; font-weight: 600; font-size: 16px; text-align: center;
+        position:  relative; top: 47.5px; left: 0px; width: 25px; height: 19.4px" value="3">
+        <p class="p" style="vertical-align: center; position: relative; left: 196px; font-weight: 600;">
+            Знаков после запятой
+        </p>
         <div id="numbs" class="p" style="position: relative; top:48px;"></div>
         <button class="p" onclick="addList()" style="border: none; border-radius: 8px; padding: 14px 24px; color: #f6d6da;
         background-color: #cd2638; font-weight: 600; font-size: 16px;
@@ -113,11 +119,23 @@
 
         function standartize(n)
         {   
+            var pz = parseFloat(document.getElementById('znpz').value);
+            if(isNaN(pz)){
+                pz = 3;
+            };
             var numlist = document.getElementById('inp'+n).value.split(' ');
+            if(numlist.length < 2){
+                alert('Введите несколько чисел');
+                return
+            };
             var olist = [];
             var nms = 0;
             for (i = 0; i < numlist.length; i++) {
                  var nms = nms + parseFloat(numlist[i]);
+                 if (isNaN(nms)){
+                    alert('Введите только числа');
+                    return
+                 };
             };
             var m = nms/numlist.length;
             var nms = 0;
@@ -125,18 +143,27 @@
                  var nms = nms + (parseFloat(numlist[i])-m)**2;
             };
             var d = nms/numlist.length;
-            var stot = d**0.5;
-            var nms = 0;
-            for (i = 0; i < numlist.length; i++) {
-                 olist.push((parseFloat(numlist[i])-m)/stot);
-            };
-            var o = olist.join(' ');
-            var outp = document.createElement('p');
-            outp.innerHTML = o;
-            outp.style.fontWeight = '600';
-            outp.style.fontSize = '16px';
-            outp.style.margin = '8px 14px';
-            document.getElementById('list'+n).appendChild(outp);
+            if(d != 0)
+            {
+                var stot = d**0.5;
+                var nms = 0;
+                for (i = 0; i < numlist.length; i++) {
+                     olist.push(parseFloat(((parseFloat(numlist[i])-m)/stot).toFixed(pz)));
+                };
+                var o = olist.join('    ');
+                if(document.getElementById('output'+n)==null){
+                    var outp = document.createElement('p');
+                    outp.innerHTML = o;
+                    outp.style.fontWeight = '600';
+                    outp.style.fontSize = '16px';
+                    outp.style.margin = '8px 14px';
+                    outp.id = 'output'+n;
+                    document.getElementById('list'+n).appendChild(outp);
+                    return
+                };
+                document.getElementById('output'+n).innerHTML = o;
+            }
+            else {alert('Введите разные числа')}
         }
     </script>
 </html>
