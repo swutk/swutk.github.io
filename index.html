@@ -13,12 +13,14 @@
     </head>
     <body onload="begin()" style="background-color: #f4f4f4; padding: 16px;">
         <p class="p" style="font-size: 56px; margin: 0px 0px; font-weight: 200;">Стандартизатор числовых наборов</p>
-        <button class="p" onclick="begin()" style="border: none; border-radius: 8px; padding: 14px 24px; background-color: #f6d6da; color: #cd2638; font-weight: 600; font-size: 16px;
+        <button class="p" onclick="begin()" style="border: none; border-radius: 8px; padding: 14px 24px; background-color: #f6d6da;
+        color: #cd2638; font-weight: 600; font-size: 16px;
         position:  relative; top: 48px">
             Очистить
         </button>
         <div id="numbs" class="p" style="position: relative; top:48px;"></div>
-        <button class="p" onclick="addList()" style="border: none; border-radius: 8px; padding: 14px 24px; color: #f6d6da; background-color: #cd2638; font-weight: 600; font-size: 16px;
+        <button class="p" onclick="addList()" style="border: none; border-radius: 8px; padding: 14px 24px; color: #f6d6da;
+        background-color: #cd2638; font-weight: 600; font-size: 16px;
         position:  relative; top: 48px">
             Добавить набор
         </button>
@@ -56,9 +58,11 @@
             inp.style.backgroundColor = '#f4f4f4';
             inp.style.border = 'none';
             inp.style.borderRadius = '8px';
-            inp.style.padding = '14px 24px';
+            inp.style.padding = '14px 14px';
             inp.style.fontSize  = '16px';
-            inp.style.margin = '8px 0px';
+            inp.style.margin = '0px';
+            inp.style.position = 'relative';
+            inp.style.top = '8px';
             inp.style.fontFamily = "'Inter', sans-serif";
             inp.style.fontWeight = '600';
             inp.placeholder = 'Введите числа через пробел';
@@ -67,6 +71,8 @@
             applybutton.style.color = '#f6d6da';
             applybutton.style.border = 'none';
             applybutton.style.borderRadius = '8px';
+            applybutton.style.position = 'relative';
+            applybutton.style.top = '8px';
             applybutton.style.padding = '14px 24px';
             applybutton.style.fontSize  = '16px';
             applybutton.style.margin = '8px 8px';
@@ -77,6 +83,8 @@
             delbutton.style.color = '#cd2638';
             delbutton.style.backgroundColor = '#f6d6da';
             delbutton.style.border = 'none';
+            delbutton.style.position = 'relative';
+            delbutton.style.top = '8px';
             delbutton.style.borderRadius = '8px';
             delbutton.style.padding = '14px 14px';
             delbutton.style.fontSize  = '16px';
@@ -86,6 +94,7 @@
             delbutton.innerHTML = '×';
             var lin = window.listnum;
             delbutton.addEventListener("click", function(){delList(lin)});
+            applybutton.addEventListener("click", function(){standartize(lin)});
             tile.appendChild(lnum);
             tile.appendChild(inp);
             tile.appendChild(applybutton);
@@ -100,6 +109,34 @@
             }
             else {document.getElementById('list'+n).remove();
             window.listcount = window.listcount-1};
+        }
+
+        function standartize(n)
+        {   
+            var numlist = document.getElementById('inp'+n).value.split(' ');
+            var olist = [];
+            var nms = 0;
+            for (i = 0; i < numlist.length; i++) {
+                 var nms = nms + parseFloat(numlist[i]);
+            };
+            var m = nms/numlist.length;
+            var nms = 0;
+            for (i = 0; i < numlist.length; i++) {
+                 var nms = nms + (parseFloat(numlist[i])-m)**2;
+            };
+            var d = nms/numlist.length;
+            var stot = d**0.5;
+            var nms = 0;
+            for (i = 0; i < numlist.length; i++) {
+                 olist.push((parseFloat(numlist[i])-m)/stot);
+            };
+            var o = olist.join(' ');
+            var outp = document.createElement('p');
+            outp.innerHTML = o;
+            outp.style.fontWeight = '600';
+            outp.style.fontSize = '16px';
+            outp.style.margin = '8px 14px';
+            document.getElementById('list'+n).appendChild(outp);
         }
     </script>
 </html>
