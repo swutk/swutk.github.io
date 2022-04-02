@@ -119,13 +119,17 @@
             else {document.getElementById('list'+n).remove();
             window.listcount = window.listcount-1};
         }
-
+        
         function standartize(n)
         {   
             var pz = parseFloat(document.getElementById('znpz').value);
             if(isNaN(pz)){
                 pz = 3;
             };
+            if(pz > 16){
+                document.getElementById('znpz').value = 16;
+                pz = 16;
+            }
             var numlist = document.getElementById('inp'+n).value.split(' ');
             if(numlist.length < 2){
                 alert('Введите несколько чисел');
