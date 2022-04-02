@@ -11,7 +11,7 @@
             }
         </style>
     </head>
-    <body onload="begin()" style="background-color: #f0f0f0; padding: 16px;">
+    <body onload="begin()" style="background-color: #f4f4f4; padding: 16px;">
         <p class="p" style="font-size: 56px; margin: 0px 0px; font-weight: 200;">Стандартизатор числовых наборов</p>
         <button class="p" onclick="begin()" style="border: none; border-radius: 8px; padding: 14px 24px; background-color: #f6d6da; color: #cd2638; font-weight: 600; font-size: 16px;
         position:  relative; top: 48px">
@@ -43,6 +43,8 @@
             tile.style.padding = '12px';
             tile.style.margin = '24px 0px';
             tile.style.backgroundColor = '#ffffff';
+            tile.style.border = 'solid 1px';
+            tile.style.borderColor = '#dbdbdb';
             tile.id = 'list'+window.listnum;
             lnum = document.createElement('p');
             lnum.style.fontSize = '36px';
@@ -53,7 +55,7 @@
             inp.type = 'text';
             inp.id = 'inp'+window.listnum;
             inp.style.width = '50%';
-            inp.style.backgroundColor = '#f0f0f0';
+            inp.style.backgroundColor = '#f4f4f4';
             inp.style.border = 'none';
             inp.style.borderRadius = '8px';
             inp.style.padding = '14px 24px';
