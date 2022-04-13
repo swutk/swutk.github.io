@@ -14,7 +14,7 @@
             }
         </style>
     </head>
-    <body onload="begin()" style="background-color: #f4f4f4; padding: 16px;">
+    <body onload="begin()" style="background-color: #f4f4f4; padding: 16px; width: auto;">
         <p class="p" style="font-size: 56px; margin: 0px 0px; font-weight: 200;">Стандартизатор числовых наборов</p>
         <button class="p" onclick="begin()" style="border: none; border-radius: 8px; padding: 14px 24px; background-color: #f6d6da;
         color: #cd2638; font-weight: 600; font-size: 16px;
@@ -24,7 +24,7 @@
         <input type="text" id="znpz" style="border: none; border-radius: 8px; padding: 14px 14px; background-color: #f6d6da;
         color: #cd2638; font-weight: 600; font-size: 16px; text-align: center;
         position:  relative; top: 47.5px; left: -4px; width: 25px; height: 19.4px" value="3">
-        <p class="p" style="vertical-align: center; position: relative; left: 192px; font-weight: 600;">
+        <p class="p" style="vertical-align: center; position: relative; left: 192px; font-weight: 600; margin: 16px 0px; width: 500px;">
             Знаков после запятой
         </p>
         <div id="numbs" class="p" style="position: relative; top: 12px"></div>
@@ -53,6 +53,7 @@
             tile = document.createElement('div');
             tile.style.borderRadius = '8px';
             tile.style.padding = '12px';
+            tile.style.width = 'auto';
             tile.style.margin = '24px 0px';
             tile.style.backgroundColor = '#ffffff';
             tile.id = 'list'+window.listnum;
