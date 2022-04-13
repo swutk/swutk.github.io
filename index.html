@@ -159,13 +159,15 @@
                 for (i = 0; i < numlist.length; i++) {
                      olist.push(parseFloat(((parseFloat(numlist[i])-m)/stot).toFixed(pz)));
                 };
-                var o = olist.join('    ');
+                var o = olist.join('    ');
                 if(document.getElementById('output'+n)==null){
                     var outp = document.createElement('p');
                     outp.innerHTML = o;
                     outp.style.fontWeight = '600';
                     outp.style.fontSize = '16px';
                     outp.style.margin = '8px 14px';
+                    outp.style.width = 'auto';
+                    outp.style.height = 'auto';
                     outp.id = 'output'+n;
                     document.getElementById('list'+n).appendChild(outp);
                     return
